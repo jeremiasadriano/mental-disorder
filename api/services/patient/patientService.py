@@ -29,24 +29,24 @@ def previsao(id):
     data = request.get_json()
 
     patient_data = {
-        'sadness': data['Sadness'],
-        'euphoric': data['Euphoric'],
-        'exhausted': data['Exhausted'],
-        'sleep_disorder': data['Sleep dissorder'],
-        'mood_swing': data['Mood Swing'],
-        'suicidal_thoughts': data['Suicidal thoughts'],
-        'anorexia': data['Anorxia'],
-        'authority_respect': data['Authority Respect'],
-        'try_explanation': data['Try-Explanation'],
-        'aggressive_response': data['Aggressive Response'],
-        'ignore_move_on': data['Ignore & Move-On'],
-        'nervous_breakdown': data['Nervous Break-down'],
-        'admit_mistakes': data['Admit Mistakes'],
-        'overthinking': data['Overthinking'],
-        'sexual_activity': data['Sexual Activity'],
-        'concentration': data['Concentration'],
-        'optimism': data['Optimisim']
-    }
+            'sadness': data['sadness'],
+            'euphoric': data['euphoric'],
+            'exhausted': data['exhausted'],
+            'sleep_disorder': data['sleepDisorder'],
+            'mood_swing': data['moodSwing'],
+            'suicidal_thoughts': data['suicidalThoughts'],
+            'anorexia': data['anorexia'],
+            'authority_respect': data['authorityRespect'],
+            'try_explanation': data['tryExplanation'],
+            'aggressive_response': data['aggressiveResponse'],
+            'ignore_move_on': data['ignoreMoveOn'],
+            'nervous_breakdown': data['nervousBreakdown'],
+            'admit_mistakes': data['admitMistakes'],
+            'overthinking': data['overthinking'],
+            'sexual_activity': data['sexualActivity'],
+            'concentration': data['concentration'],
+            'optimism': data['optimism']
+        }
 
     patient_values = list(patient_data.values())
     patient_values_2d = [patient_values]
@@ -69,27 +69,25 @@ def previsao(id):
         
     try:
         new_patient = Patient(
-            user_id=escape(id),  
-            sadness=data['Sadness'],
-            euphoric=data['Euphoric'],
-            exhausted=data['Exhausted'],
-            sleep_disorder=data['Sleep dissorder'],
-
-            mood_swing=convert_to_boolean(data['Mood Swing']),
-            suicidal_thoughts=convert_to_boolean(data['Suicidal thoughts']),
-            anorexia=convert_to_boolean(data['Anorxia']),
-            authority_respect=convert_to_boolean(data['Authority Respect']),
-            try_explanation=convert_to_boolean(data['Try-Explanation']),
-            aggressive_response=convert_to_boolean(data['Aggressive Response']),
-            ignore_move_on=convert_to_boolean(data['Ignore & Move-On']),
-            nervous_breakdown=convert_to_boolean(data['Nervous Break-down']),
-            admit_mistakes=convert_to_boolean(data['Admit Mistakes']),
-            overthinking=convert_to_boolean(data['Overthinking']),
-
-            sexual_activity=data['Sexual Activity'],
-            concentration=data['Concentration'],
-            optimism=data['Optimisim'],
-            diagnosis=diagnosis
+        user_id=escape(id),
+        sadness=data['sadness'],
+        euphoric=data['euphoric'],
+        exhausted=data['exhausted'],
+        sleep_disorder=data['sleepDisorder'],
+        mood_swing=convert_to_boolean(data['moodSwing']),
+        suicidal_thoughts=convert_to_boolean(data['suicidalThoughts']),
+        anorexia=convert_to_boolean(data['anorexia']),
+        authority_respect=convert_to_boolean(data['authorityRespect']),
+        try_explanation=convert_to_boolean(data['tryExplanation']),
+        aggressive_response=convert_to_boolean(data['aggressiveResponse']),
+        ignore_move_on=convert_to_boolean(data['ignoreMoveOn']),
+        nervous_breakdown=convert_to_boolean(data['nervousBreakdown']),
+        admit_mistakes=convert_to_boolean(data['admitMistakes']),
+        overthinking=convert_to_boolean(data['overthinking']),
+        sexual_activity=data['sexualActivity'],
+        concentration=data['concentration'],
+        optimism=data['optimism'],
+        diagnosis=diagnosis
         )
 
         db.session.add(new_patient)

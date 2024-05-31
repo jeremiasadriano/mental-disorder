@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
-import { SideBarHome } from './components/home/SideBarHome'
 import ClassificationHome from './components/home/ClassificationHome'
+import Home from './pages/Home'
 function App() {
   const router = createBrowserRouter([
     {
@@ -14,7 +14,7 @@ function App() {
       path: '/register'
     },
     {
-      element: <SideBarHome />,
+      element: <Home />,
       path: '/',
       children: [
         {
