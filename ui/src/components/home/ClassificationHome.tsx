@@ -5,6 +5,7 @@ import BooleanRadio from './BooleanRadios';
 import RatingSelect from './RatingSelect';
 import { useAxios } from '../../hooks/useAxios';
 import Cookies from 'js-cookie'
+import PatientList from './PatientList';
 
 const Form: React.FC = () => {
     const [sadness, setSadness] = useState<FrequencyOption>('Usually');
@@ -50,7 +51,7 @@ const Form: React.FC = () => {
         };
         try {
             const id = Cookies.get("id")
-            const response = await useAxios.post(`/predict/1`, formData); // Substitua 1 pelo ID do usuário
+            const response = await useAxios.post(`/predict/${id}`, formData); // Substitua 1 pelo ID do usuário
             console.log('Response:', response.data);
         } catch (error) {
             console.error('Error:', error);
@@ -86,6 +87,13 @@ const Form: React.FC = () => {
                         <RatingSelect label="Atividade Sexual" value={sexualActivity} onChange={setSexualActivity} />
                         <RatingSelect label="Concentração" value={concentration} onChange={setConcentration} />
                         <RatingSelect label="Otimismo" value={optimism} onChange={setOptimism} />
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div style={{ overflowY: 'auto', maxHeight: 650, scrollbarWidth: 'none' }}>
+                        <PatientList />
                     </div>
                 </div>
                 <button type="submit" style={{ backgroundColor: 'rgb(47, 46, 65)', color: 'white', padding: 5, borderRadius: 5 }}>Enviar</button>
