@@ -4,8 +4,7 @@ import Cookies from 'js-cookie'
 
 const PatientList: React.FC = () => {
     const [patients, setPatients] = useState<IPatient[]>([]);
-    const userId = 1
-    // Cookies.get("1");
+    const userId = Cookies.get("id");
 
     useEffect(() => {
         const fetchPatients = async () => {
@@ -30,7 +29,7 @@ const PatientList: React.FC = () => {
             <ul>
                 {patients.map(patient => (
                     <li key={patient.id}>
-                        <strong>Patient ID:</strong> {patient.id}<br />
+                        <strong>Previsão numero:</strong> {patient.id}<br />
                         <strong>Tristeza:</strong> {patient.sadness}<br />
                         <strong>Eufórico:</strong> {patient.euphoric}<br />
                         <strong>Exausto:</strong> {patient.exhausted}<br />

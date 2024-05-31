@@ -18,7 +18,7 @@ export default function FormSignUp() {
             const { id } = await response.data
             Cookies.remove("id")
             Cookies.set("id", id)
-            navigate("/")
+            navigate("/login")
         } catch (error) {
             console.log(error)
             setMessageError("Os dados inseridos são inválidos!")

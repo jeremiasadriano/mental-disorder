@@ -3,6 +3,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import ClassificationHome from './components/home/ClassificationHome'
 import Home from './pages/Home'
+import Profile from './pages/Profile'
 function App() {
   const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ function App() {
         {
           element: <ClassificationHome />,
           path: 'classification'
+        },
+        {
+          element: <Profile />,
+          path: 'profile'
         }
       ]
     }

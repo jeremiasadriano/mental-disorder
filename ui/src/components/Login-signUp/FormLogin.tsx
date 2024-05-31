@@ -15,9 +15,9 @@ export default function FormLogin() {
     async function login() {
         try {
             const response = await useAxios.post("/login", user)
-            const { id } = await response.data
+            const { user_id } = await response.data
             Cookies.remove("id")
-            Cookies.set("id", id)
+            Cookies.set("id", user_id)
             navigate("/")
         } catch (error) {
             setMessageError("Email or password is incorrect")
