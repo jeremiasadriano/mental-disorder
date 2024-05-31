@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from models import db, User
 userBluePrint = Blueprint('user', __name__)
 
-@userBluePrint.post('/users')
+@userBluePrint.post('/register')
 def register_user():
     data = request.get_json()
     new_user = User(
