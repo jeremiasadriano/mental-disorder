@@ -18,7 +18,9 @@ export function SideBarHome() {
                         </Link>
                     </Sidebar.Item>
                     <Sidebar.Item icon={HiViewBoards}>
-                        Regressão
+                        <Link to={'regression'}>
+                            Regressão
+                        </Link>
                     </Sidebar.Item>
                     <Sidebar.Item icon={HiUser}>
                         <Link to={'profile'}>
@@ -30,7 +32,7 @@ export function SideBarHome() {
                             Cookies.remove("id")
                             navigate("/login")
                         }}>
-                            Sign Up
+                            Sair
                         </span>
                     </Sidebar.Item>
                 </Sidebar.ItemGroup>

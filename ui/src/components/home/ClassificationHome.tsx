@@ -6,6 +6,8 @@ import RatingSelect from './RatingSelect';
 import { useAxios } from '../../hooks/useAxios';
 import Cookies from 'js-cookie'
 import PatientList from './PatientList';
+import { useNavigate } from 'react-router-dom';
+import { IPatient } from '../../Types/IPatient';
 
 const Form: React.FC = () => {
     const [sadness, setSadness] = useState<FrequencyOption>('Usually');
@@ -27,6 +29,29 @@ const Form: React.FC = () => {
     const [sexualActivity, setSexualActivity] = useState<string>("3 From 10");
     const [concentration, setConcentration] = useState<string>("3 From 10");
     const [optimism, setOptimism] = useState<string>("3 From 10");
+
+    const navigate = useNavigate()
+
+
+    const [patients, setPatients] = useState<IPatient[]>([]);
+    const userId = Cookies.get("id");
+
+    useEffect(() => {
+        const fetchPatients = async () => {
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/user/${userId}/patients`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setPatients(data.patients);
+            } catch (error) {
+                console.error('Error fetching patients:', error);
+            }
+        };
+
+        fetchPatients();
+    }, [patients]);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -51,12 +76,13 @@ const Form: React.FC = () => {
         };
         try {
             const id = Cookies.get("id")
-            const response = await useAxios.post(`/predict/${id}`, formData); // Substitua 1 pelo ID do usuário
+            const response = await useAxios.post(`/predict/${id}`, formData);
             console.log('Response:', response.data);
         } catch (error) {
             console.error('Error:', error);
         }
         console.log('Form Data:', formData);
+        navigate("/classification")
     };
 
     return (
@@ -93,7 +119,36 @@ const Form: React.FC = () => {
                     <div></div>
                     <div></div>
                     <div style={{ overflowY: 'auto', maxHeight: 650, scrollbarWidth: 'none' }}>
-                        <PatientList />
+                        <div>
+                            <h1>Resultados passados</h1>
+                            <ul>
+                                {patients.map(patient => (
+                                    <li key={patient.id}>
+                                        <strong>Previsão numero:</strong> {patient.id}<br />
+                                        <strong>Tristeza:</strong> {patient.sadness}<br />
+                                        <strong>Eufórico:</strong> {patient.euphoric}<br />
+                                        <strong>Exausto:</strong> {patient.exhausted}<br />
+                                        <strong>Distúrbio do Sono:</strong> {patient.sleep_disorder}<br />
+                                        <strong>Oscilação de Humor:</strong> {patient.mood_swing ? 'Yes' : 'No'}<br />
+                                        <strong>Pensamentos Suicidas:</strong> {patient.suicidal_thoughts ? 'Yes' : 'No'}<br />
+                                        <strong>Anorexia:</strong> {patient.anorexia ? 'Yes' : 'No'}<br />
+                                        <strong>Respeito pela Autoridade:</strong> {patient.authority_respect ? 'Yes' : 'No'}<br />
+                                        <strong>Tentativa de Explicação:</strong> {patient.try_explanation ? 'Yes' : 'No'}<br />
+                                        <strong>Resposta Agressiva:</strong> {patient.aggressive_response ? 'Yes' : 'No'}<br />
+                                        <strong>Ignorar e Seguir em Frente:</strong> {patient.ignore_move_on ? 'Yes' : 'No'}<br />
+                                        <strong>Colapso Nervoso:</strong> {patient.nervous_breakdown ? 'Yes' : 'No'}<br />
+                                        <strong>Admitir Erros:</strong> {patient.admit_mistakes ? 'Yes' : 'No'}<br />
+                                        <strong>Pensar Demais:</strong> {patient.overthinking ? 'Yes' : 'No'}<br />
+                                        <strong>Atividade Sexual:</strong> {patient.sexual_activity}<br />
+                                        <strong>Concentração:</strong> {patient.concentration}<br />
+                                        <strong>Otimismo:</strong> {patient.optimism}<br />
+                                        <strong>Diagnóstico:</strong> {patient.diagnosis}<br />
+                                        <br />
+                                        <br />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" style={{ backgroundColor: 'rgb(47, 46, 65)', color: 'white', padding: 5, borderRadius: 5 }}>Enviar</button>

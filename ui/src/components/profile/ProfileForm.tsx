@@ -22,7 +22,6 @@ export function ProfileForm() {
             setMessageError("Perfil atualizado com sucesso")
         } catch (error) {
             console.log(error)
-            setMessageError("Os dados inseridos são inválidos!")
         }
     }
 
