@@ -21,7 +21,9 @@ export function ProfileForm() {
             Cookies.set("id", id)
             setMessageError("Perfil atualizado com sucesso")
         } catch (error) {
-            console.log(error)
+            if (error.response && error.response.status !== 500) {
+                setMessageError("Erro ao atualizar o perfil!")
+            }
         }
     }
 

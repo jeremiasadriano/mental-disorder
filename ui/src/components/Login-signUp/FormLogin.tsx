@@ -11,16 +11,17 @@ export default function FormLogin() {
     const [messageError, setMessageError] = useState("")
     const [user, setUser] = useState<IUser | null>(null)
     const navigate = useNavigate()
-
     async function login() {
         try {
-            const response = await useAxios.post("/login", user)
-            const { user_id } = await response.data
-            Cookies.remove("id")
-            Cookies.set("id", user_id)
-            navigate("/")
-        } catch (error) {
-            setMessageError("Email or password is incorrect")
+            const response = await useAxios.post("/login", user);
+            const { user_id } = await response.data;
+            Cookies.remove("id");
+            Cookies.set("id", user_id);
+            navigate("/classification");
+        } catch (error: unknown) {
+            if (error.response && error.response.status !== 500) {
+                setMessageError("Email or password is incorrect");
+            }
         }
     }
 

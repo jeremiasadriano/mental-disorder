@@ -20,8 +20,9 @@ export default function FormSignUp() {
             Cookies.set("id", id)
             navigate("/login")
         } catch (error) {
-            console.log(error)
-            setMessageError("Os dados inseridos são inválidos!")
+            if (error.response && error.response.status !== 500) {
+                setMessageError("Os dados inseridos são inválidos!")
+            }
         }
     }
 
