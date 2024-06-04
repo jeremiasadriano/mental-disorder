@@ -1,7 +1,6 @@
 import { Label, Select } from 'flowbite-react';
-import React from 'react';
 
-interface RatingSelectProps {
+type RatingSelectProps = {
     label: string;
     value: string;
     onChange: (value: string) => void;
@@ -31,7 +30,7 @@ const translatedRatings: any = {
     "1 From 10": "1 de 10"
 };
 
-const RatingSelect: React.FC<RatingSelectProps> = ({ label, value, onChange }) => {
+const RatingSelect = ({ label, value, onChange }: RatingSelectProps) => {
     return (
         <div>
             <div className="mb-2 block">

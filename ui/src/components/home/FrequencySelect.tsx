@@ -9,13 +9,13 @@ const frequencyTranslations: { [key in FrequencyOption]: string } = {
     'Most-Often': 'Na maioria das vezes',
 };
 
-interface FrequencySelectProps {
+type FrequencySelectProps = {
     label: string;
     value: FrequencyOption;
     onChange: (value: FrequencyOption) => void;
 }
 
-const FrequencySelect: React.FC<FrequencySelectProps> = ({ label, value, onChange }) => {
+export default function FrequencySelect({ label, value, onChange }: FrequencySelectProps) {
     const handleFrequencyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         onChange(event.target.value as FrequencyOption);
     };
@@ -36,4 +36,3 @@ const FrequencySelect: React.FC<FrequencySelectProps> = ({ label, value, onChang
     );
 };
 
-export default FrequencySelect;

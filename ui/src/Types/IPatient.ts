@@ -1,5 +1,5 @@
 export interface IPatient {
-    id: number;
+    id?: number;
     sadness: string;
     euphoric: string;
     exhausted: string;
@@ -17,5 +17,5 @@ export interface IPatient {
     sexual_activity: string;
     concentration: string;
     optimism: string;
-    diagnosis: string;
+    diagnosis?: string;
 }
