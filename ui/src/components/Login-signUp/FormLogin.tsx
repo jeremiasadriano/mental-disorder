@@ -20,7 +20,7 @@ export default function FormLogin() {
             navigate("/classification");
         } catch (error: unknown) {
             if (error.response && error.response.status !== 500) {
-                setMessageError("Email or password is incorrect");
+                setMessageError("Email ou senha estão incorrectos");
             }
         }
     }
