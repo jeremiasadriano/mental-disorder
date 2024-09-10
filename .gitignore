@@ -3,6 +3,7 @@
 **/__pycache__/
 **/.vscode/
 **/.npmrc
+**/instance/
 
 # Logs
 logs

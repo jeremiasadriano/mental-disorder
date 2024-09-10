@@ -1,7 +1,7 @@
+import Cookies from 'js-cookie'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAxios } from '../../hooks/useAxios'
-import Cookies from 'js-cookie'
 import { IUser } from '../../Types/IUser'
 
 
